@@ -49,10 +49,27 @@ Und
 var wert = Model.textBox.value;
 anstelle von: var wert = jr_get_value('textBox');
 ```
+Alle Properties die abhängig vom Element existieren können:
+- name = Der Name des Elements.
+- value = Der Wert des Elements.
+- displayValue = Der Angezeigte Wert eines Elements (z.B. bei SQL-Listen).
+- visible = Wird das Element angezeigt oder nicht.
+- readonly = Darf das Element bearbeitet werden.
+- disabled = Darf das Element bearbeitet werden und soll der Wert in die Datenbank gespeichert werden.
+- required = Ist das Element ein Pflichtfeld.
+- label = Die Bezeichnung des Elements.
+- label2 = Die 2. Bezeichnung des Elements.
+- isSubtableElement = 
+- skipDependencies = 
+- dependencies = 
+- node = Der HTML Node des Elements.
+- render = die hinterlegte Renderer-Funktion des Elements (default: function () {} ).
+
 Im Folgenden wird genauer auf besondere Elemente eingegangen 
+
+
 ### Untertabellen
-
-
+Untertabellen exisiteren ebenso wie andere Elemente als Objekt im Model.   
 
 ## Konfigurationsobjekt
 Das Objekt, das im vorherigen Abschnitt dem Methodenaufruf "WS.createDatamodel({ object })" übergeben wurde, dient der Konfiguration der Dialogelement und füllt das Model mit Leben. Zuerst werden wir die Strukur des Objekts erläutern und danach detailierter auf die konkreten einzelnen Elemente einzugehen.
