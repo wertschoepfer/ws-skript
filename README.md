@@ -22,33 +22,33 @@ Im nächsten Unter Abschnitt erklären wir wozu das im Methoden aufruf übergebe
 
 ## Das Objekt eines Dialogelements
 Jedes Dialogelement wird durch ein Objekt im Model repräsentiert und kann wie oben beschrieben angesprochen werden. Ein Dialogelement hat abhängig von dessen Typ bestimmte Properties. So hat beispielsweise jedes Dialogelement das Property 'visible' womit dessen Sichtbarkeit manipuliert werden kann und wird folgendermaßen benutzt:
-
+```
 Model.dialogElementName.visible = false;  // ( = true; )
-
+```
 Im Vergleich dazu wäre die JobRouter eigene Variante:
-
+```
 jr_set_visible('dialogElementName', false); // ( , true); )
-
+```
 Ein Property, dass beispielsweise bei List-Elementen nicht existiert ist das Property 'readonly'. 
 
 Das Auslesen des Wertes eines der Properties erfolgt nun einfach über:
-
+```
 var visibilty = Model.dialogElementName.visible;
-
+```
 anstelle von
-
+```
 var visibilty jr_is_visible('dialogElementName');
-
+```
 Oder Beispielhaft gezeigt am Beispiel des Wertes eines Dialogelements (insofern dieses einen besitzt):
-
+```
 Model.textBox.value = 'Ein neuer Wert wurde gesetzt';
 anstelle von: jr_set_value('textBox', 'Ein neuer Wert wurde gesetzt');
-
+```
 Und
-
+```
 var wert = Model.textBox.value;
 anstelle von: var wert = jr_get_value('textBox');
-
+```
 Im Folgenden wird genauer auf besondere Elemente eingegangen 
 ### Untertabellen
 
@@ -58,13 +58,13 @@ Im Folgenden wird genauer auf besondere Elemente eingegangen
 Das Objekt, das im vorherigen Abschnitt dem Methodenaufruf "WS.createDatamodel({ object })" übergeben wurde, dient der Konfiguration der Dialogelement und füllt das Model mit Leben. Zuerst werden wir die Strukur des Objekts erläutern und danach detailierter auf die konkreten einzelnen Elemente einzugehen.
 
 Die Methode erwartet folgende Struktur des Konfigurationsobjekts: 
-
+```
 {
     renderers : {},
     listeners : {},
     dependencies : {}
 }
-
+```
 Im Folgenden wird auf diese drei Konfigurationsoptionen detailierter eingegangen. 
 
 ### Renderers
@@ -81,7 +81,7 @@ Das sind die verschiedenen Typen und deren Situationen:
 - 'refresh' = existiert nur bei SQL-Elementen und wird aufgerufen, wenn ein dieses manuell durch .refresh() ausgeführt wurde oder aufgrund einer Abhängigkeit auf ein anderes Element, dessen Renderer aufgerufen wurde.   
 
 
-
+```
 renderers : {
     dialogelementName : function (model, type, initType) {
     
@@ -91,7 +91,7 @@ renderers : {
 
     }
 },
-
+```
 
 
 Das Konfigurationsobjekts besteht aus 3 Bestandteilen.   Fehlt eines dieser Properties, wird dieses Standardmäßig mit einem leeren Objekt initialisiert.
