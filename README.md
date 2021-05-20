@@ -69,10 +69,13 @@ Im Folgenden wird genauer auf besondere Elemente eingegangen
 
 
 ### Untertabellen
-Untertabellen exisiteren ebenso wie andere Elemente als Objekt im Model. Sie haben allerdings ein paar besonderheiten.
+Untertabellen exisiteren ebenso wie andere Elemente als Objekt im Model. Sie unterscheiden sich allerdings zu den anderen Dialogelementen anahnd Ihrer Properties.
 
-- rows (function) =  gibt ein Array von allen Rows zurück, die derzeit in der Tabelle sind. 
-
+- rows : function () =  gibt ein Array von allen Rows zurück, die derzeit in der Tabelle sind. 
+- maxRowId : Number = Die derzeit größte Row-Id, die seit dem letzten 'init' in der Tabelle vorhanden ist.
+- init : function ([ { untertabellenElement1 : 'Wert', untertabellenELement2: 3 }, { untertabellenElement1 : 'Wert' }]) = initalisieren der Untertabllen.
+- deleteRows : function ([ 1, 2]) = Löschen der Untertabellenzeilen, deren RowIds übergeben wurden. 
+- addRows : function ([ { untertabellenElement1 : 'Wert', untertabellenELement2: 3 }, { untertabellenElement1 : 'Wert' }]) = Hinzufügen der übergeben Zeilen.
 ## Konfigurationsobjekt
 Das Objekt, das im vorherigen Abschnitt dem Methodenaufruf "WS.createDatamodel({ object })" übergeben wurde, dient der Konfiguration der Dialogelement und füllt das Model mit Leben. Zuerst werden wir die Strukur des Objekts erläutern und danach detailierter auf die konkreten einzelnen Elemente einzugehen.
 
