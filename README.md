@@ -52,16 +52,16 @@ anstelle von: var wert = jr_get_value('textBox');
 Alle Properties die abhängig vom Element existieren können:
 - name = Der Name des Elements.
 - value = Der Wert des Elements.
-- displayValue = Der Angezeigte Wert eines Elements (z.B. bei SQL-Listen).
-- visible = Wird das Element angezeigt oder nicht.
-- readonly = Darf das Element bearbeitet werden.
-- disabled = Darf das Element bearbeitet werden und soll der Wert in die Datenbank gespeichert werden.
-- required = Ist das Element ein Pflichtfeld.
+- displayValue (String) = Der Angezeigte Wert eines Elements (z.B. bei SQL-Listen).
+- visible (true, false) = Wird das Element angezeigt oder nicht.
+- readonly (true, false) = Darf das Element bearbeitet werden.
+- disabled (true, false) = Darf das Element bearbeitet werden und soll der Wert in die Datenbank gespeichert werden.
+- required (true, false) = Ist das Element ein Pflichtfeld.
 - label = Die Bezeichnung des Elements.
 - label2 = Die 2. Bezeichnung des Elements.
-- isSubtableElement = 
-- skipDependencies = 
-- dependencies = 
+- isSubtableElement = true, wenn es sich um eine Subtable handelt
+- skipDependencies = Kann vor einer Renderer auslösenden Aktion auf true gesetzt werden. Für diesen einen Renderer aufruf werden keine Dependencies ausgelöst.
+- dependencies = ein Array an Strings mit den Namen der Elemente auf die eine Abhängigkeit besteht.
 - node = Der HTML Node des Elements.
 - render = die hinterlegte Renderer-Funktion des Elements (default: function () {} ).
 
@@ -69,7 +69,9 @@ Im Folgenden wird genauer auf besondere Elemente eingegangen
 
 
 ### Untertabellen
-Untertabellen exisiteren ebenso wie andere Elemente als Objekt im Model.   
+Untertabellen exisiteren ebenso wie andere Elemente als Objekt im Model. Sie haben allerdings ein paar besonderheiten.
+
+- rows (function) =  gibt ein Array von allen Rows zurück, die derzeit in der Tabelle sind. 
 
 ## Konfigurationsobjekt
 Das Objekt, das im vorherigen Abschnitt dem Methodenaufruf "WS.createDatamodel({ object })" übergeben wurde, dient der Konfiguration der Dialogelement und füllt das Model mit Leben. Zuerst werden wir die Strukur des Objekts erläutern und danach detailierter auf die konkreten einzelnen Elemente einzugehen.
@@ -97,7 +99,7 @@ Das sind die verschiedenen Typen und deren Situationen:
  ACHTUNG! : dieser Typ existiert derzeit nicht bei SQL-Elementen. Diese werden stattdessen mit dem Typ 'refresh' aufgerufen     
 - 'refresh' = existiert nur bei SQL-Elementen und wird aufgerufen, wenn ein dieses manuell durch .refresh() ausgeführt wurde oder aufgrund einer Abhängigkeit auf ein anderes Element, dessen Renderer aufgerufen wurde.   
 
-
+Beispiel Definition: 
 ```
 renderers : {
     dialogelementName : function (model, type, initType) {
@@ -106,37 +108,66 @@ renderers : {
     
     dialogelementName2 : function (model, type, initType) {
 
+    },
+
+    untertabellenName : {
+        untertabellenFeldName : function (row, type, model, initType) {
+
+        }
     }
 },
 ```
 
+Die übergebenen Paramter sind:
+- Dialogelement
+    - model : {} = das Model Objekt
+    - type : String = der Typ (Grund) des Aufrufs
+    - initType : String = Wenn type = 'dependency', dann steht hier der ursprüngliche Typ drin mit dem das erste ELement aufgrufen wurde. Ansonsten is type = initType
+- Untertabellenelement zusätzlich
+    - row : {} = Die Row, in der sich das zu rendernde ELement befindet.
+## Listeners
+In diesem Objekt kann einem Dialogelement eine Eventlistener hinzugefügt werden. 
 
-Das Konfigurationsobjekts besteht aus 3 Bestandteilen.   Fehlt eines dieser Properties, wird dieses Standardmäßig mit einem leeren Objekt initialisiert.
 
-{
-    
-    listeners : {
-        dialogelementName : {
-            click : function () {
-
-            }
-        },
-        dialogelementName2 : {
-            blur : function () {
-                
-            }
+Beispiel Definition:
+```
+listeners : {
+    dialogelementName : {
+        click : function (model) {
         }
     },
-    dependencies : {
-        dialogelementName : ["dialogelementName2"]
+
+    dialogelementName2 : {
+        blur : function (model) {
+                
+        }
+    },
+
+    untertabellenName : {
+        untertabellenFeldName : {
+            click : function (model) {                    
+        }    
     }
-} 
+}
+```
+Die übergebenen Paramter sind:
+- model {} = Das Model Objekt.
+## Dependencies
+In diesem Objekt können Abhängigkeiten definiert werden. Eine Abhängigkeit bewirkt, dass bei jedem Aufruf des Renderers eines Elements, die Renderer aller weiteren Element für die eine Abhängigkeit von diesem ersten Element existieren, aufgerufen werden. Dieses Verhalten ist unabhängig vom Typ des Rendereraufrufs. Die Rendereraufrufe, die durch Abhängigkeiten enstanden sind, bekommen als Typ 'dependency' übergeben. (ACHTUNG: Dies gilt nicht für SQL-ELemente. Diese werden in solchen Situationen mit dem type 'refresh' aufgerufen.)
 
-
-
-
-## Renderer
+Beispiel Definition:
+```
+dependencies : {
+    dialogelementName : ["dialogelementName2"],
+    dialogelementName2 : ["untertabellenName.untertabellenFeldName"],
+    untertabellenName : {
+        untertabellenFeldName : ["untertabellenFeldName2"]
+    }
+}
+```
 
 # Cotribution
 
 # FAQ
+
+Hier könnte Ihre Frage stehen!
