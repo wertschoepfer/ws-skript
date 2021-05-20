@@ -1,5 +1,5 @@
 # WS-Skript
-Das WS-Skirpt ist ein JavaScript Modul/Framework (???), das einen struktieriteren und objektorientierteren Ansatz der JavaScript Entwicklung im JobRouter ermöglicht. Es besteht aus einem großen Javascript Objekt "WS", dessen  Grundfunktionalitäten in der "ws.js" Datei verankert sind. Das WS.datamodel Property ist hingegen ausgelagert in das seperate Skript "ws-datamodel.js". 
+Das WS-Skirpt ist ein JavaScript Modul/Framework, das einen struktieriteren und objektorientierteren Ansatz der JavaScript Entwicklung im JobRouter ermöglicht. Es besteht aus einem großen Javascript Objekt "WS", dessen  Grundfunktionalitäten in der "ws.js" Datei verankert sind. Das WS.datamodel Property ist hingegen ausgelagert in das seperate Skript "ws-datamodel.js". 
 
 # Installation
 Die Skripte können über einen seperaten Prozess im Jobrouter abgelegt werden. Hierzu erstellen wir einen Prozess und benennen diesen in unserem Beispiel "ws_utils". Sie können den Namen beliebig wählen. Um nun das Skript in den Prozess zu bekommen, müssen Sie direkt über den Server, auf dem sich Ihr JobRouter befindet, in der Ordnerstruktur in den Data Ordner Ihres Prozesses ( data/[process-name]/[process-version]/ ). In diesem Ordner sollten die Dateien aus diesem Repository hinzugefügt werden. 
