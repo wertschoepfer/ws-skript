@@ -128,7 +128,7 @@ Die übergebenen Paramter sind:
     - initType : String = Wenn type = 'dependency', dann steht hier der ursprüngliche Typ drin mit dem das erste ELement aufgrufen wurde. Ansonsten is type = initType
 - Untertabellenelement zusätzlich
     - row : {} = Die Row, in der sich das zu rendernde ELement befindet.
-## Listeners
+### Listeners
 In diesem Objekt kann einem Dialogelement eine Eventlistener hinzugefügt werden. 
 
 
@@ -155,7 +155,7 @@ listeners : {
 ```
 Die übergebenen Paramter sind:
 - model {} = Das Model Objekt.
-## Dependencies
+### Dependencies
 In diesem Objekt können Abhängigkeiten definiert werden. Eine Abhängigkeit bewirkt, dass bei jedem Aufruf des Renderers eines Elements, die Renderer aller weiteren Element für die eine Abhängigkeit von diesem ersten Element existieren, aufgerufen werden. Dieses Verhalten ist unabhängig vom Typ des Rendereraufrufs. Die Rendereraufrufe, die durch Abhängigkeiten enstanden sind, bekommen als Typ 'dependency' übergeben. (ACHTUNG: Dies gilt nicht für SQL-ELemente. Diese werden in solchen Situationen mit dem type 'refresh' aufgerufen.)
 
 Beispiel Definition:
