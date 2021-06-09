@@ -57,6 +57,10 @@ var WS = {
 	},
 
 	isEmpty: function (obj) {
+		if (typeof obj === "string" && obj === ""){
+	        return true;
+	    }
+
 		if (obj == null) {
 			return true;
 		}
@@ -413,6 +417,7 @@ var WS = {
 				width: config.width || 500,
 				height: config.height || 400,
 				modal: config.modal || true,
+				close: config.close || null,
 				buttons: config.buttons || [
 					{
 						text: 'OK',
