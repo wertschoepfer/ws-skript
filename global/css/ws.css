@@ -1,18 +1,17 @@
 @charset "UTF-8";
 
 .tui-full-calendar-section-button {
-  display: none;
+    display: none;
 }
-
 
 .wsCard {
     border-radius: 16px;
     height: 175px;
     width: 300px;
     position: relative;
-    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0,0.1);
+    box-shadow: 0px 13px 10px -7px rgba(0, 0, 0, 0.1);
     border: 1px solid rgba(200, 200, 200, 0.1);
-    background: radial-gradient(ellipse at 50% 20%, #fff 0%,#f0f0f0 100%);
+    background: radial-gradient(ellipse at 50% 20%, #fff 0%, #f0f0f0 100%);
 }
 .wsCardOverlay {
     width: 100px;
@@ -25,14 +24,14 @@
 }
 
 .wsCardOverlay.startTracking {
-    background: url("./data/icons/color/time-management/038-stopwatch.svg");
+    background: url('./data/icons/color/time-management/038-stopwatch.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 118% 0;
 }
 
 .wsCardOverlay.stopTracking {
-    background: url("./data/icons/color/calendar-and-date/046-calendar.svg");
+    background: url('./data/icons/color/calendar-and-date/046-calendar.svg');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: 118% 0;
@@ -44,7 +43,7 @@
     text-transform: uppercase;
     font-size: 0.8rem;
     color: #808080;
-    font-family: "Segoe UI", Tahoma;
+    font-family: 'Segoe UI', Tahoma;
     letter-spacing: 2px;
     bottom: 110px;
     left: 135px;
@@ -58,11 +57,11 @@
     left: 135px;
 }
 .wsCard.active {
-    background: radial-gradient(ellipse at 50% 20%, #fffdf8 0%,#f4e7c9 100%);
+    background: radial-gradient(ellipse at 50% 20%, #fffdf8 0%, #f4e7c9 100%);
 }
 
 .wsCard.active .trackingTime::before {
-    content: "•";
+    content: '•';
     color: red;
     margin-left: -20px;
 }
@@ -72,134 +71,140 @@
 }
 
 #exchangerateview .row {
-  display: block;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 #exchangerateview .row:after {
-  content: '';
-  clear: both;
-  display: table;
+    content: '';
+    clear: both;
+    display: table;
 }
 
 #exchangerateview .col {
-  display: inline-block;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  float: left;
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    float: left;
 }
 
 #exchangerateview .col:after {
-  clear: both;
+    clear: both;
 }
 
 #exchangerateview .col-right {
-  float: right;
-  text-align: right;
+    float: right;
+    text-align: right;
 }
 
 #exchangerateview .col-1 {
-  width: 8%;
+    width: 8%;
 }
 
 #exchangerateview .col-2 {
-  width: 17%;
+    width: 17%;
 }
 
 #exchangerateview .col-3 {
-  width: 25%;
+    width: 25%;
 }
 
 #exchangerateview .col-4 {
-  width: 33%;
+    width: 33%;
 }
 
 #exchangerateview .col-5 {
-  width: 42%;
+    width: 42%;
 }
 
 #exchangerateview .col-6 {
-  width: 50%;
+    width: 50%;
 }
 
 #exchangerateview .col-7 {
-  width: 58%;
+    width: 58%;
 }
 
 #exchangerateview .col-8 {
-  width: 67%;
+    width: 67%;
 }
 
 #exchangerateview .col-9 {
-  width: 75%;
+    width: 75%;
 }
 
 #exchangerateview .col-10 {
-  width: 83%;
+    width: 83%;
 }
 
 #exchangerateview .col-11 {
-  width: 92%;
+    width: 92%;
 }
 
 #exchangerateview .col-12 {
-  width: 100%;
+    width: 100%;
 }
 
-
 .btn {
-  border-radius: 25px;
-  border-color: #ddd;
+    border-radius: 25px;
+    border-color: #ddd;
 }
 
 .btn:hover {
-  border: solid 1px #bbb;
-  background-color: #fff;
+    border: solid 1px #bbb;
+    background-color: #fff;
 }
 
 .btn:active {
-  background-color: #f9f9f9;
-  border: solid 1px #bbb;
-  outline: none;
+    background-color: #f9f9f9;
+    border: solid 1px #bbb;
+    outline: none;
 }
 
 .btn:disabled {
-  background-color: #f9f9f9;
-  border: solid 1px #ddd;
-  color: #bbb;
+    background-color: #f9f9f9;
+    border: solid 1px #ddd;
+    color: #bbb;
 }
 
-.btn:focus:active, .btn:focus, .btn:active {
-  outline: none;
+.btn:focus:active,
+.btn:focus,
+.btn:active {
+    outline: none;
 }
 
 .calendar-icon {
-  height: 25px;
-  width: 25px;
+    height: 25px;
+    width: 25px;
 }
 
 table.sectionContainer fieldset.jr-section.minimizable {
-  color: #000;
-  background: linear-gradient(175deg, rgb(239, 239, 239) 0%, rgb(255, 255, 255) 44%, rgb(239, 239, 239) 100%);
-  padding: 10px !important;
+    color: #000;
+    background: linear-gradient(175deg, rgb(239, 239, 239) 0%, rgb(255, 255, 255) 44%, rgb(239, 239, 239) 100%);
+    padding: 10px !important;
 }
 
 legend.jr-section-title.sectionName {
-  margin-bottom: 20px!important;
-  border:none!important;
-  font-weight: 100!important;
+    margin-bottom: 20px !important;
+    border: none !important;
+    font-weight: 100 !important;
 }
 
-.jr-btn, .ui-dialog-buttonset .ui-button {
-  background-color: #ffda6c;
-  box-shadow: none;
+.jr-btn,
+.ui-dialog-buttonset .ui-button {
+    background-color: #ffda6c;
+    box-shadow: none;
 }
 
-.jr-btn:active, .ui-dialog-buttonset .ui-button:active, .jr-btn:hover, .ui-dialog-buttonset .ui-button:hover {
-  background-color: #ffc516;
+.jr-btn:active,
+.ui-dialog-buttonset .ui-button:active,
+.jr-btn:hover,
+.ui-dialog-buttonset .ui-button:hover {
+    background-color: #ffc516;
 }
 
-.jr-btn, .ui-dialog-buttonset .ui-button {
-  color: #333;
+.jr-btn,
+.ui-dialog-buttonset .ui-button {
+    color: #333;
 }
