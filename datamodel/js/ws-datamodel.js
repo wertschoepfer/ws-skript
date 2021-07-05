@@ -2095,7 +2095,11 @@
 
             var registerAutocompleteLeaf = function (object, property, elementConfig) {
                 var element = elementConfig.element;
-                var elementName, elementLabel, elementLabel2, hiddenElement, elementContainer;
+                var elementName,
+                    /** @type {HTMLElement} */ elementLabel,
+                    elementLabel2,
+                    hiddenElement,
+                    elementContainer;
                 var initialDisabled = element.disabled;
 
                 /*
@@ -2113,7 +2117,11 @@
                     hiddenElement = document.getElementById(elementName);
                     elementContainer = document.getElementById('div_' + elementName);
                 } else {
-                    elementLabel = document.getElementById(property + '_label');
+                    elementLabel =
+                        document.getElementById(property + '_label') ||
+                        // Bugfix: setting required on an autocomplete sql list throws a null error
+                        // Reason: "property" is stripped of the "display_" prefix, so the above selector returns null
+                        document.getElementById('display_' + property + '_label');
                     property = property.replace('display_', '');
                     elementName = property;
                     elementLabel2 = document.getElementById(property + '_label2');
