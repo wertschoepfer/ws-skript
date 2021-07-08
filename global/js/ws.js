@@ -83,6 +83,14 @@ var WS = {
 		return true;
 	},
 
+	isNumber: function(obj){
+		if (WS.isEmpty(number)) {
+			return false;
+		} else {
+			return !isNaN(number);
+		}
+	},
+
 	contains: function (value, validValues) {
 		var found = false;
 		this.each(validValues, function (i, currentVal) {
