@@ -153,6 +153,22 @@ listeners : {
     }
 }
 ```
+Sonderfälle Untertabellen-Buttons, man beachte das diese außerhalb des Untertabellenobjekts zu definieren sind:
+```
+listeners : {
+    untertabellenName_add : {
+        click : function (model) {
+        }
+    },
+    untertabellenName_delete : {
+        click : function (model) {
+        }
+    },
+    untertabellenName_copy : {
+        click : function (model) {
+        }
+    }
+```
 Die übergebenen Paramter sind:
 - model {} = Das Model Objekt.
 ### Dependencies
