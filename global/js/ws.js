@@ -1,6 +1,7 @@
 /* eslint-disable indent */
 /*global $JR, $JRApp, $JRUSER, LoadingLayer, retrieveFromSTVHeaderElement, Chart, WS_LIB_VERSION*/
 // eslint-disable-next-line no-redeclare
+
 var WS = {
 
 	/**
@@ -739,6 +740,129 @@ var WS = {
 			tinymce.init(editorConfig);
 			leaf.editor = tinymce.get(editorId);
 		},
+	},
+
+	taskManager: {
+		taskFields: ['taskTitle', 'taskDesc', 'fulfillmentDate','taskRecipient','taskReviewer','taskPriority'],
+
+		createTaskPopUp (taskProcessName) {
+			if (!document.getElementById('sectionTaskPopup')) {
+				jr_notify_error('Bitte zuerst "sectionTaskPopup" erstellen.');
+				return;
+			}
+
+			const taskPopUp = WS.form.createPopup({
+				width: "1000",
+                height: "500",
+				content: jQuery("#sectionTaskPopup"),
+				autoOpen: false,
+                buttons: [
+					{
+                        text: "Erstellen",
+                        id: "submitTask",
+                        click () {
+                            WS.taskManager.submitTask(taskProcessName);
+							WS.taskManager.closeTaskPopUp(this);
+                        },
+                        class: "jr-btn-success",
+                        //style: "background-color:#3f9054; color: white; cursor: pointer;",
+                    },
+					{
+                        text: "Abbrechen",
+                        id: "cancleTask",
+                        click () {
+                            WS.taskManager.closeTaskPopUp(this);
+                        },
+                        class: "jr-btn-success",
+                        //style: "background-color:#3f9054; color: white; cursor: pointer;",
+                    },
+				]
+			});
+
+			taskPopUp.dialog("close");
+
+			return taskPopUp;
+		},
+
+		closeTaskPopUp (dialog) {
+			jQuery(dialog).dialog("close");
+			WS.each(WS.taskManager.taskFields, (key, value) => {
+				if (value == "fulfillmentDate") {
+					jr_set_value(value, null);	
+					return;
+				}
+				jr_set_value(value, '');
+			});
+		},
+
+		async submitTask (taskProcessName) {
+			//WS.executeDialogfunction()
+			let formData = new FormData(); 
+
+			formData.append('step', 10);
+			formData.append('initiator', $JRUSER.userName);
+			formData.append('username', $JRUSER.userName);
+			formData.append(`processtable[fields][0][name]`, 'sourceProcessId');
+			formData.append(`processtable[fields][0][value]`, jr_get_value('sourceProcessId'));
+
+			let num = 1;
+
+			WS.each(WS.taskManager.taskFields, (key, value) => {
+				if (jr_get_value(value) && jr_get_value(value) !== "Invalid Date") {
+					formData.append(`processtable[fields][${num}][name]`, value);
+					formData.append(`processtable[fields][${num}][value]`, (value == "fulfillmentDate" ? moment(jr_get_value(value)).format() : jr_get_value(value)));
+					num++;
+				}
+				
+			});
+
+			const response = await fetch(`api/rest/v2/application/incidents/${taskProcessName}`,
+					{
+						method: "POST",
+						body: formData
+					}
+				);
+				
+			if (response.ok) {
+				// const json = await response.json();
+
+				// const response2 = await fetch(
+				// 	`api/rest/v2/application/steps/${json.incidents[0].workflowId}`,
+				// 	{
+				// 		headers: {
+				// 			'Content-Type': 'application/json'
+				// 		},
+				// 		method: "PUT",
+				// 		body: JSON.stringify({
+				// 			processName: taskProcessName,
+				// 			processVersion: 1,
+    			// 			stepNo: 10,
+				// 			action: "send",
+				// 			simulation: 0,
+				// 			dialogType: "desktop",
+				// 			dialog: {
+				// 				fields: [
+				// 					{
+				// 						name: 'boxStatus',
+				// 						value: 'In Bearbeitung'
+				// 					}
+				// 				]
+				// 			}
+				// 		})
+				// 	}
+				// );
+
+				// if (response2.ok) {
+				// 	jr_notify_success('YEAI');
+				// }
+				jr_notify_success('Aufgabe wurde erstellt.');
+			} else {
+
+			}
+		}
+
+
+
 	},
 
 	conf: {
